@@ -1,13 +1,11 @@
-const express = require('express');
-const restRouter = require('./apis/rest-router');
+import express from 'express';
+import { restRouter } from './apis/rest-router';
 
-const app = express();
+export const app = express();
 
 
-app.use('/rest', restRouter);
+app.use('/api', restRouter);
 
 app.get('/', (req, res) => {
   res.json({ok: true});
 })
-
-module.exports = app
