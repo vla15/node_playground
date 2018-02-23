@@ -10,6 +10,7 @@ export const controllers = {
   },
 
   async getOne(docToGet) {
+    return await docToGet;
   },
 
   getAll(model) {
@@ -21,8 +22,8 @@ export const controllers = {
 }
 
 export const getOne = (model) => async (req, res, next) => {
-  console.log('trying to get shit');
-  return res.status(201).json(await controllers.getOne(model))
+  console.log('did we get something?', req.docFromId)
+  res.status(201).json(await controllers.getOne(req.docFromId))
 }
 
 export const getAll = (model) => (req, res, next) => {
