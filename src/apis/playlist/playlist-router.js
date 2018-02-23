@@ -1,15 +1,15 @@
 import express from 'express';
+import { PlaylistController } from './playlist-controller';
 
 export const playlistRouter = express.Router();
 
 playlistRouter
   .route('/')
-  .get((req, res) => res.json({ playlistRouter: "get" }))
-  .put((req, res) => res.json({ playlistRouter: "get" }))
+  .get(PlaylistController.getAll)
+  .put(PlaylistController.createOne);
 
 playlistRouter
   .route('/:id')
-  .get((req, res) => res.json({ GetHomie: req.params.id }))
-  .put((req, res) => res.json({ PutHomie: req.params.id }))
-
-playlistRouter.all('*', (req, res) => res.json({dance: 'the night away'}))
+  .get(PlaylistController.getOne)
+  .put(PlaylistController.createOne)
+  .delete(PlaylistController.deleteOne);
