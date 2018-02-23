@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { baseConfig } from './config/index';
+import config from './config/index';
 mongoose.Promise = global.Promise;
 
 export const connectDb = () => {
-  return mongoose.connect(baseConfig.db.url)
+  return mongoose.connect(config.db.url)
 }

@@ -1,6 +1,6 @@
-
 export const controllers = {
-  createOne(model, body) {
+  async createOne(model, body) {
+    return await model.create(body);
   },
 
   updateOne(docToUpdate, update) {
@@ -21,6 +21,7 @@ export const controllers = {
 }
 
 export const getOne = (model) => async (req, res, next) => {
+  console.log('trying to get shit');
   return res.status(201).json(await controllers.getOne(model))
 }
 
@@ -28,8 +29,12 @@ export const getAll = (model) => (req, res, next) => {
   res.json({ getAll: 123 });
 }
 
-export const createOne = (model) => (req, res, next) => {
-  res.json({ createOne: 123 });
+export const createOne = (model) => async (req, res, next) => {
+  try {
+    res.status(201).json(await controllers.createOne(model, req.body));
+  } catch (error) {
+    next(error);
+  }
 }
 
 export const deleteOne = (model) => (req, res, next) => {
